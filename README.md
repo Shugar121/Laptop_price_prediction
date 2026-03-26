@@ -1,4 +1,4 @@
-# Laptop Price Predictor
+# Laptop Price Prediction
 
 Это веб-приложение на Flask, которое предсказывает цену ноутбука по его характеристикам.
 
@@ -11,4 +11,4 @@
 ## Установка
 1. Клонируйте репозиторий:
 ```bash
-git clone https://github.com/ТВОЙ_ЮЗЕР/laptop-price-predictor.git
+git clone https://github.com/ТВОЙ_ЮЗЕР/Laptop_price_prediction.git
