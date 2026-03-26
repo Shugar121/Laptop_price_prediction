@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <h1>💻 Laptop Price Predictor</h1>    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #444;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        input, select {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+
+        button {
+            grid-column: span 2;
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f4ff;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .error {
+            margin-top: 20px;
+            padding: 15px;
+            background: #ffe0e0;
+            border-radius: 10px;
+            color: red;
+            text-align: center;
+        }
+
+        .metrics {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e6ffe6;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        table {
+            margin-top: 30px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>💻 Laptop Price Predictor <span style="font-size: 18px; color: #667eea;">Linear Regression</span></h1>
+
+
+    <form method="POST">
+
+        <input name="Inches" placeholder="Screen size (e.g. 15.6)" required>
+        <input name="Weight" placeholder="Weight (e.g. 2.3)" required>
+
+        <select name="Company">
+            <option>Dell</option>
+            <option>HP</option>
+            <option>Lenovo</option>
+            <option>Asus</option>
+            <option>Acer</option>
+            <option>Apple</option>
+        </select>
+
+        <select name="Type">
+            <option>Notebook</option>
+            <option>Gaming</option>
+            <option>Ultrabook</option>
+            <option>Workstation</option>
+        </select>
+
+        <select name="Ram">
+            <option>4GB</option>
+            <option>8GB</option>
+            <option>16GB</option>
+            <option>32GB</option>
+        </select>
+
+        <select name="Memory">
+            <option>256GB SSD</option>
+            <option>512GB SSD</option>
+            <option>1TB HDD</option>
+            <option>1TB SSD</option>
+        </select>
+
+        <select name="OpSys">
+            <option>Windows 10</option>
+            <option>Linux</option>
+            <option>Mac OS X</option>
+        </select>
+
+        <select name="Gpu">
+            <option>Intel HD Graphics 620</option>
+            <option>Nvidia GeForce GTX 1050</option>
+            <option>Nvidia GeForce MX150</option>
+        </select>
+
+        <select name="Cpu">
+            <option>Intel Core i5 7200U 2.5GHz</option>
+            <option>Intel Core i7 7700HQ 2.8GHz</option>
+            <option>AMD A9-Series 9420 3GHz</option>
+        </select>
+
+        <select name="Resolution">
+            <option>Full HD 1920x1080</option>
+            <option>IPS Panel Full HD 1920x1080</option>
+            <option>4K Ultra HD 3840x2160</option>
+        </select>
+
+        <button type="submit">Predict Price</button>
+    </form>
+
+    {% if prediction %}
+        <div class="result">
+            💰 Predicted Price: <b>{{ prediction }}</b>
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div class="error">
+            ⚠ Error: {{ error }}
+        </div>
+    {% endif %}
+
+    <div class="metrics">
+        📊 R²: {{ r2 }} | MAE: {{ mae }}
+    </div>
+
+    <h2>📋 Dataset Preview</h2>
+    {% for table in tables %}
+        {{ table|safe }}
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
